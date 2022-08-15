@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="/statics/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/statics/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="/statics/css/bootstrap-reboot.min.css">
+    <script src="/statics/js/jquery.min.js" rel="script"></script>
+    <script src="/statics/js/Popper.js" rel="script"></script>
+    <script rel="script" src="/statics/js/bootstrap.bundle.js"></script>
+    <title>{{.title}}</title>
+</head>
+<header>
+    {{template "header"}}
+</header>
+<body>
+    <div id="container" >
+        <div id="header" style="background-color: #8fe6d2;text-align: center;">
+            <h1 style="margin-bottom: 0;">选择Excel文件进行上传</h1>
+        </div>
+        <div id="content" style="background-color: #FFE4C4;">
+            <p>
+                保险精灵已下载次数：{{.usednum}}次
+            </p>
+            <br/>
+            <p>
+                保险精灵剩余下载次数：{{.leftnum}}次
+            </p>
+            <br/>
+            <input type="file" id="selectFiles" onchange="uploadFile()">
+            <!-- <button type="button" onclick="uploadFile()">
+                选择上传的文件
+            </button> -->
+            <br/>
+        </div>
+        <div id="footer" style="background-color: #afe486;text-align: center;">
+            版权 © 产研技术部移动端
+        </div>
+    </div>
+
+</body>
+
+<script>
+    function uploadFile() {
+        var reader = new FileReader();
+        reader.onload = function() {
+
+        }
+    }
+</script>
+
+</html>
+

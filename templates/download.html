@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.title}}</title>
+</head>
+<body>
+    <div id="container" >
+        <div id="header" style="background-color: #8fe6d2;text-align: center;">
+            <h1 style="margin-bottom: 0;">下载最新保险精灵</h1>
+        </div>
+        <div id="content" style="background-color: #FFE4C4;">
+            <p>
+                保险精灵已下载次数：{{.usednum}}次
+            </p>
+            <br/>
+            <p>
+                保险精灵剩余下载次数：{{.leftnum}}次
+            </p>
+            <br/>
+            <button type="button" onclick="downloadFile()">
+                下载最新保险精灵
+            </button>
+            <button type="button" onclick="errorAlert()">
+                遇到问题？
+            </button>
+            <br/>
+        </div>
+        <div id="footer" style="background-color: #afe486;text-align: center;">
+            版权 © 产研技术部移动端
+        </div>
+    </div>
+</body>
+
+<script>
+    function downloadFile() {
+        if (browser.versions.ios) {
+            console.log("is ios");
+        } else {
+            alert("请使用iOS设备点击下载")
+        }
+    }
+    function errorAlert() {
+        alert("请联系曹威, 电话:15652767687")
+    }
+
+  //判断访问终端
+  let browser = {
+    versions: function () {
+      let u = navigator.userAgent, app = navigator.appVersion;
+      return {
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,//火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Adr') > -1, //android终端
+        iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+        iPad: u.indexOf('iPad') > -1, //是否iPad
+        webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') > -1, //是否微信
+        qq: u.match(/\sQQ/i) == " qq" //是否QQ
+      };
+    }(),
+    language: (navigator.browserLanguage || navigator.language).toLowerCase()
+  };
+
+</script>
+
+</html>
