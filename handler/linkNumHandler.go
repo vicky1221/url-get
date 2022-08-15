@@ -26,42 +26,27 @@ func initDB() *gorm.DB {
 	if err != nil {
 		log.Panicln("database link err:" + err.Error())
 	}
-	defer Db.Close()
+	Db.AutoMigrate(&DownloadUrl{})
 	return Db
 }
 
 func GetusedLinkNumber() string {
-	// var err error
-	// dsn := "root:cw19881221@tcp(127.0.0.1:3306)/insurance"
-	// db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-	// if err != nil {
-	// 	log.Panicln("database link err:" + err.Error())
-	// }
-
-	// defer db.Close()
-
-	//自动检查 Product 结构是否变化，变化则进行迁移
 
 	database := initDB()
-
-	database.AutoMigrate(&DownloadUrl{})
-
 	// 查
 	var downloadUrl DownloadUrl
-	initDB().First(&downloadUrl, 1) // 找到id为1的产品
+	database.First(&downloadUrl, 1) // 找到id为1的产品
 	return strconv.Itoa(downloadUrl.Used_Number)
 }
 
-// func GetleftLinkNumber() string {
-// 	var downloadUrl DownloadUrl
-// 	result := initDB().Find(&downloadUrl, "ID = ?", "1")
-// 	if result.Error != nil {
-// 		log.Fatalln("result error:", result.Error)
-// 	}
-// 	log.Fatalln("result:", result.RowsAffected)
-// 	return strconv.Itoa(downloadUrl.Used_Number)
-// 	// return strconv.Itoa(left_number)
-// }
+func GetleftLinkNumber() string {
+	database := initDB()
+	// 查
+	var downloadUrl DownloadUrl
+	database.First(&downloadUrl, 1) // 找到id为1的产品
+	return strconv.Itoa(downloadUrl.Left_Number)
+	// return strconv.Itoa(left_number)
+}
 
 /*
 func GetLastDownloadUrl() string {
